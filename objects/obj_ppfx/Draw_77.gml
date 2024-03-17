@@ -1,0 +1,1 @@
+ppfx.DrawInFullscreen(application_surface);

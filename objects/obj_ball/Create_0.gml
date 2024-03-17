@@ -7,7 +7,7 @@ last_hit_player = false;
 
 pong_init();
 
-initial_velocity = -5;
+initial_velocity = -15 // -5;
 
 initial_x = x;
 initial_y = y;

@@ -1,0 +1,1 @@
+blurmode_check()

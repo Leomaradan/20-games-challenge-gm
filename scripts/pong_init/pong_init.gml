@@ -4,7 +4,7 @@ function pong_init(){
 		v_speed = 0;
 		timeout = 60;
 
-		velocity = 5;
+		velocity = 15; //5;
 		vertical_angle = 0;
 
 	}

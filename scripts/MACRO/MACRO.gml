@@ -2,3 +2,8 @@
 #macro OBJECT_SIZE 16
 
 #macro PADDING TILESET_SIZE - (OBJECT_SIZE / 2)
+
+#macro WIN 9
+
+#macro RES_W 1280
+#macro RES_H 800
