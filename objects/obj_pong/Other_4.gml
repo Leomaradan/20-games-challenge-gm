@@ -17,7 +17,7 @@ switch(room) {
 				room_goto(rm_pong_start);
 			}],
 			["Return to Game Selection",ReturnToMenuSelection],
-			["Exit Games", ReturnToMenuSelection],
+			["Exit Games", ExitToDesktop],
 		];
 		options = undefined;
 		break;
