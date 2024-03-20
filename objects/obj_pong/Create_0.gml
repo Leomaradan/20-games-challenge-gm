@@ -10,7 +10,7 @@ shockwaves_renderer_id.AddObject(__obj_ppf_shockwave);
 
 playMusic(Modern_Futuristic_City);
 
-global.pauseOptions = undefined;
+global.allowPause = false;
 
 glow_progress = 0;
 glow_speed = 0.01;
@@ -22,9 +22,25 @@ scoreVertical =  ((room_height / 3) * 2) - 24;
 scoreVerticalOffset = 24 * 1.5;
 scoreHorizontal = room_width - 20;
 
-optionSelected = 0;
-options = [];
+//optionSelected = 0;
+//options = [];
 optionsLayoutSmall = false;
 
+emptyMenu = new Menu();
+
+menu = emptyMenu;
+
 // Creating an empty array first to prevent bug with Feather
-options = undefined;
+//options = undefined;
+
+
+optionRestartGame = new MenuItem("Restart Game", function() {
+	score_player = 0;
+	score_enemy = 0;
+	score_pass = 0;	
+	room_goto(rm_pong_start);
+});
+
+optionStartGame = new MenuItem("Start Game", function() {
+	room_goto(rm_pong);
+});

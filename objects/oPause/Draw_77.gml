@@ -2,7 +2,7 @@
 
 
 
-if(global.pauseOptions != undefined && input_check_pressed("pause")) {
+if(global.allowPaus && input_check_pressed("pause")) {
 	if(!global.pause) {
 		global.pause = true;
 		

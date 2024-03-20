@@ -1,49 +1,42 @@
-global.pauseOptions = undefined;
+global.allowPause = false;
 
 if(!effect_set) {
-	obj_ppfx.ppfx.ProfileLoad(obj_ppfx.pong);
+	oPostProcess.ppfx.ProfileLoad(oPostProcess.pong);
 	global.blurmode = true;
 	effect_set = true;
 }
 
 switch(room) {
 	case rm_pong:	
-		global.pauseOptions = [
-			["Continue", Unpause],
-			["Restart Game", function() {
-				score_player = 0;
-				score_enemy = 0;
-				score_pass = 0;	
-				room_goto(rm_pong_start);
-			}],
-			["Return to Game Selection",ReturnToMenuSelection],
-			["Exit Games", ExitToDesktop],
-		];
-		options = undefined;
+		global.pauseMenu = new Menu([
+			standardOptions().continueGame,
+			optionRestartGame,
+			standardOptions().returnToGameSelection,
+			standardOptions().returnToDesktopMenuItem
+		])
+		global.allowPause = true;
+		menu = emptyMenu;
 		break;
 	case rm_pong_start: 
-		global.pauseOptions = undefined;
+		global.pauseMenu = emptyMenu;
+		global.allowPause = false;
 		optionsLayoutSmall = false;
-		options = [
-			["Start Game", function() {
-				room_goto(rm_pong);
-			}],
-			["Return to Game Selection",ReturnToMenuSelection],
-			["Exit Games", ReturnToMenuSelection]
-		];
+		menu = new Menu([
+			optionStartGame,
+			standardOptions().returnToGameSelection,
+			standardOptions().returnToDesktopMenuItem
+		]);
+
 		break;
 	case rm_pong_gameover: 
-		global.pauseOptions = undefined;
+		global.pauseMenu = emptyMenu;
+		global.allowPause = false;
 		optionsLayoutSmall = true;
-		options = [
-			["Restart Game", function() {
-				score_player = 0;
-				score_enemy = 0;
-				score_pass = 0;	
-				room_goto(rm_pong_start);
-			}],
-			["Return to Game Selection",ReturnToMenuSelection],
-			["Exit Games", ReturnToMenuSelection]
-		];
+
+		menu = new Menu([
+			optionRestartGame,
+			standardOptions().returnToGameSelection,
+			standardOptions().returnToDesktopMenuItem
+		]);		
 		break;		
 }

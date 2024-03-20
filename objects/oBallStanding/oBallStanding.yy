@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_ball_standing",
+  "name": "oBallStanding",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],

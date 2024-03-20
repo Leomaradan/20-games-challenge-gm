@@ -12,7 +12,10 @@ if(global.pause) {
 	draw_text(RES_W * 0.5, RES_H * 0.3, "Pause");
 	
 	draw_set_font(fnt_prosto_48);
-	if(global.pauseOptions != undefined) {
+	
+	global.pauseMenu.render(RES_W * 0.5, RES_H * 0.5, 48);
+	
+	/*if(global.pauseOptions != undefined) {
 		for(var _i = 0; _i < array_length(global.pauseOptions); _i++) {
 			var _print = "";
 
@@ -25,7 +28,7 @@ if(global.pause) {
 			draw_text(RES_W * 0.5, RES_H * 0.5 + (_i * 48), _print);
 			draw_set_alpha(1.0)
 		}
-	}
+	}*/
 	
 	
 	

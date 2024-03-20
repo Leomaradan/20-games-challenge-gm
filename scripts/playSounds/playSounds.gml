@@ -1,4 +1,4 @@
-function PlaySound(sound, intensity = 0.5, randomness = 0){
+function playSound(sound, intensity = 0.5, randomness = 0){
 	var _intensityRandom = randomness == 0 ? intensity : random_range(intensity - randomness, intensity + randomness);
 	
 	audio_play_sound(sound, 1, false, _intensityRandom);
@@ -13,6 +13,4 @@ function playMusic(music, intensity = 0.5){
 		global.musicPlaying = music;
 	}
 
-
-	
 }

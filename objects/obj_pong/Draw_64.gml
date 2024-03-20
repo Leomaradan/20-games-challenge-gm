@@ -61,23 +61,16 @@ if(room == rm_pong_gameover) {
 
 }
 
-if(options != undefined) {
-	for(var _i = 0; _i < array_length(options); _i++) {
-		var _print = "";
-		var _alpha = 1.0;
+var _menuVerticalRender = room_height - verticalTier;
+var _menuSizeRender =  48 * 1.5;
 
-		if(_i == optionSelected) {
-			_print += "> " + options[_i][0] + " <";
-		} else {
-			_print += options[_i][0];	
-			draw_set_alpha(0.7);
-		}
-		
-		if(optionsLayoutSmall) {
-			texts_gui_shadow(horizontalCenter, (scoreVerticalOffset * 4) + scoreVertical + (_i * scoreVerticalOffset), _print, 24, _alpha);	
-		} else {
-			texts_gui_shadow(horizontalCenter, room_height - verticalTier + (_i * (48 * 1.5)), _print, 48, _alpha);
-		}
-
-	}
+if(optionsLayoutSmall) {
+	draw_set_font(fProsto24);
+	_menuVerticalRender = (scoreVerticalOffset * 4) + scoreVertical;
+	_menuSizeRender = scoreVerticalOffset;
+} else {
+	draw_set_font(fnt_prosto_48);
 }
+
+menu.render(horizontalCenter, _menuVerticalRender,_menuSizeRender, true);
+

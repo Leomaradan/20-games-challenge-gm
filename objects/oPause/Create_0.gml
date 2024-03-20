@@ -1,4 +1,7 @@
 global.pause = false;
-pauseOptionSelected = 0;
+global.allowPause = false;
+//pauseOptionSelected = 0;
+//global.pauseOptions = undefined;
 
-global.pauseOptions = undefined;
+global.pauseMenu = new Menu([]);
+
