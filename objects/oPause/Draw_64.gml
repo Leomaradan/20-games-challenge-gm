@@ -6,12 +6,12 @@ if(global.pause) {
 	draw_set_color(c_black);
 	draw_set_alpha(0.75);
 	draw_rectangle(0,0,RES_W,RES_H,false);
-	ResetTexts();
-	draw_set_font(fnt_prosto_72);
+	resetTexts();
+	draw_set_font(fProsto72);
 	
 	draw_text(RES_W * 0.5, RES_H * 0.3, "Pause");
 	
-	draw_set_font(fnt_prosto_48);
+	draw_set_font(fProsto48);
 	
 	global.pauseMenu.render(RES_W * 0.5, RES_H * 0.5, 48);
 	
@@ -33,7 +33,7 @@ if(global.pause) {
 	
 	
 	//if(global.pauseOptions != undefined) {
-		//texts_gui(room_width / 2, room_height / 2, "Pause", 48);
+		//textsDraw(room_width / 2, room_height / 2, "Pause", 48);
 	//}
 	
 	/*surface_set_target(application_surface);

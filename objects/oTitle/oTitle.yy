@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sPongTitle",
-    "path": "sprites/sPongTitle/sPongTitle.yy",
+    "name": "sPongTitle65",
+    "path": "sprites/sPongTitle65/sPongTitle65.yy",
   },
   "spriteMaskId": null,
   "visible": true,

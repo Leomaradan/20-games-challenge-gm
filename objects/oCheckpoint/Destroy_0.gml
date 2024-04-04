@@ -1,0 +1,1 @@
+show_debug_message("oCheckpoint destroyed {0}", self.id);

@@ -1,1 +1,1 @@
-blurmode_check()
+motionBlur()

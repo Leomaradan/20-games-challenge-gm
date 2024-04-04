@@ -20,7 +20,7 @@ function __input_config_verbs()
             left:  [input_binding_key(vk_left),  input_binding_key("A")],
             right: [input_binding_key(vk_right), input_binding_key("D")],
             
-            //accept:  input_binding_key(vk_space),
+            accept:  input_binding_key(vk_space),
             //cancel:  input_binding_key(vk_backspace),
             //action:  input_binding_key(vk_enter),
             //special: input_binding_key(vk_shift),
@@ -29,8 +29,14 @@ function __input_config_verbs()
             //shoot: input_binding_mouse_button(mb_left),
 			
 			restart: input_binding_key("R"),
+			
+			activate: [input_binding_key(vk_space), input_binding_mouse_button(mb_left)],
+			
+			click: input_binding_mouse_button(mb_left),
+			//input_binding_mouse(),
             
             pause: input_binding_key(vk_escape),
+            // escape: input_binding_key(vk_escape),
 			start:  [input_binding_key(vk_space), input_binding_key(vk_enter)]
         },
         
@@ -41,7 +47,7 @@ function __input_config_verbs()
             left:  [input_binding_gamepad_axis(gp_axislh, true),  input_binding_gamepad_button(gp_padl)],
             right: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
             
-            //accept:  input_binding_gamepad_button(gp_face1),
+            accept:  input_binding_gamepad_button(gp_face1),
             //cancel:  input_binding_gamepad_button(gp_face2),
             //action:  input_binding_gamepad_button(gp_face3),
             //special: input_binding_gamepad_button(gp_face4),
@@ -54,6 +60,8 @@ function __input_config_verbs()
 			
 			restart: input_binding_gamepad_button(gp_select),
             
+			activate: [input_binding_gamepad_button(gp_face1)],
+			
             pause: input_binding_gamepad_button(gp_start),
             start: [input_binding_gamepad_button(gp_face1), input_binding_gamepad_button(gp_start)],
         },

@@ -1,5 +1,5 @@
 function pong_init(){
-	with(obj_ball) {
+	with(oBall) {
 		h_speed = 0;
 		v_speed = 0;
 		timeout = 60;

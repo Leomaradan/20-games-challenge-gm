@@ -1,0 +1,8 @@
+pong :				Paddle Dash
+casse-brick :		Block Blitz
+flappy bird :		Wing Soar
+jetpac :			Rocket Run
+asteroid :			Stellar Storm
+space invaders :	Galaxy Assault
+galaga/defender :	Cosmic Sentinel
+frogger ;			Lily Leap

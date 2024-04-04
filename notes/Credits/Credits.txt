@@ -1,0 +1,14 @@
+Pong : Modern Futuristic City (https://slaleky.itch.io/retro-and-electronic-music-pack)
+Flappy Bird : 2016_ Clement Panchout_ Life is full of Joy (https://clement-panchout.itch.io/yet-another-free-music-pack)
+Menu : 2014 07_ Clement Panchout_ Partycles OST_ Cheerful Title Screen (https://clement-panchout.itch.io/yet-another-free-music-pack)
+
+Sounds : Audio Megapack by Joshua Wayne (https://marketplace.gamemaker.io/assets/1951/audio-megapack-160-sounds)
+- sndMenuClick : base_descend1
+- sndMenuClickError : base_descend4_exit
+- sndHomeMenuClick : click_wood_bleep
+- sndPongBallLaunch : glass_bleep_trail
+- sndPongDefeat : happy_bells_diminish
+- xx : happy_bells_start
+- sndPongVictory : happy_bells_success
+- sndPongBallBounce : synth1_b1
+- sndBonusGet : cute_bleep

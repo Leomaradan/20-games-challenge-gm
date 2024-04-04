@@ -11,8 +11,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "GamesSelection",
-    "path": "folders/Objects/GamesSelection.yy",
+    "name": "Home",
+    "path": "folders/Objects/Home.yy",
   },
   "parentObjectId": null,
   "persistent": false,

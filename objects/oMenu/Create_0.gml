@@ -1,4 +1,10 @@
+buttonSelectedCol = 1;
+buttonSelectedRow = 1;
+
+previousSelectedCol = 1;
+previousSelectedRow = 1;
 /*optionSelected = 0;
+
 
 options = [
 	["PONG", rm_pong_start],
@@ -7,14 +13,14 @@ options = [
 	["Jetpack (soon)", undefined],
 ];*/
 
-var _emptyOptions = new MenuItemOptions([], bass_descend4_exit, 0.7, 0.5);
+//var _emptyOptions = new MenuItemOptions([], sndMenuClickError, 0.7, 0.5);
 
-menu = new Menu([
-	new MenuItem("PONG", function() { room_goto(rm_pong_start) }),
-	new MenuItem("Flappy Bird (soon)", undefined, _emptyOptions),
-	new MenuItem("Breakout (soon)", undefined, _emptyOptions),
-	new MenuItem("Jetpack (soon)", undefined ,_emptyOptions ),
-	new MenuItem("Options", undefined),
-	new MenuItem("Exit", exitToDesktop, new MenuItemOptions([Platforms.Desktop])),
-])
+//menu = new Menu([
+	//new MenuItem("PONG", function() { room_goto(rmPongStart) }),
+	//new MenuItem("Flappy Bird", function() { room_goto(rFlappyBirdStart) }),
+	//new MenuItem("Breakout (soon)", undefined, _emptyOptions),
+	//new MenuItem("Jetpack (soon)", undefined ,_emptyOptions ),
+	//new MenuItem("Options", undefined),
+	//new MenuItem("Exit", exitToDesktop, new MenuItemOptions([Platforms.DESKTOP])),
+//])
 

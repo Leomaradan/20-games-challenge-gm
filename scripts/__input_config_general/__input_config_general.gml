@@ -7,9 +7,9 @@
 //Mobile platforms: Android, iOS, iPadOS, tvOS, HTML5 or OperaGX
 #macro INPUT_MOBILE_GAMEPAD       true
 
-#macro INPUT_MOBILE_MOUSE         false  //Maps touchscreen to mouse
-#macro INPUT_MOBILE_WEB_KEYBOARD  false  //Partially supported
-#macro INPUT_ANDROID_KEYBOARD     false  //Partially supported
+#macro INPUT_MOBILE_MOUSE         true  //Maps touchscreen to mouse
+#macro INPUT_MOBILE_WEB_KEYBOARD  true  //Partially supported
+#macro INPUT_ANDROID_KEYBOARD     true  //Partially supported
 
 //Switch console platform
 #macro INPUT_SWITCH_VIBRATION     true   //Legacy support (simulated with HD Rumble)
