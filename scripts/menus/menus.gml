@@ -34,19 +34,18 @@ function MenuItemOptions(
 	_sound = sndMenuClick,
 	_selectedOpacity = 1.0,
 	_unselectedOpacity = 0.7,
-	_halign = undefined,
-	_valign = undefined,
-	_offsetX = undefined,
-	_offsetY = undefined,
 ) constructor {
 	platforms = _platforms;
 	sound = _sound;
 	selectedOpacity = _selectedOpacity;
 	unselectedOpacity = _unselectedOpacity;
-	halign = _halign;
-	valign = _valign;
-	offsetX = _offsetX;
-	offsetY = _offsetY;
+	halign = undefined;
+	valign = undefined;
+	offsetX = undefined;
+	offsetY = undefined;
+	minimalWidth = undefined;	
+	doubleWidth = undefined;
+
 }
 
 /// @func Menu item
@@ -97,10 +96,13 @@ function Menu(_options = []) constructor {
 		}
 	};
 
-	static render = function(_startX, _startY, _size, _shadow = false, _enableMouse = true, _cursors = true, _color = c_white) {
+	static render = function(_startX, _startY, _size, _shadow = false, _enableMouse = true, _cursors = true, _color = c_white, _sprite = undefined, _yOffsets = undefined) {
 		if (!self.filtered) {
 			self.filter();
 		}
+		
+		var _initial_valign = draw_get_valign();
+		var _initial_halign = draw_get_halign();
 
 		for (var _i = 0; _i < array_length(self.options); _i++) {
 			var _print = "";
@@ -133,14 +135,28 @@ function Menu(_options = []) constructor {
 			
 			if(_current.option.halign) {
 				draw_set_halign(_current.option.halign);
-			}		
+			} else {
+				draw_set_halign(_initial_halign);
+			}
 			
 			if(_current.option.valign) {
 				draw_set_valign(_current.option.valign);
+			} else {
+				draw_set_valign(_initial_valign);
 			}				
 			
+			var _params = {};
+			
+			if(_enableMouse || _sprite) {
+				_params = self.boundingBox(_offset_x, _offset_y, _size, _print, _current.option.doubleWidth, _current.option.minimalWidth);
+			}
+			
 			if(_enableMouse) {
-				self.mouse(_offset_x, _offset_y, _size, _i, _print);
+				self.mouse(_params, _i);
+			}
+			
+			if(_sprite) {
+				self.sprite(_params, _i, _sprite);
 			}
 
 			if (_shadow) {
@@ -152,6 +168,12 @@ function Menu(_options = []) constructor {
 
 			draw_set_alpha(_opacity);
 			draw_set_color(_color);
+			
+			var _offset_text_y = _offset_y;
+			
+			if(_yOffsets) {
+				//_offset_text_y += (_i == self.optionSelected) ? _yOffsets[0] : _yOffsets[1];
+			}
 
 			draw_text(_offset_x, _offset_y, _print);
 			draw_set_alpha(1.0);
@@ -171,13 +193,14 @@ function Menu(_options = []) constructor {
 		}
 	};
 
-	static mouse = function(_startX, _offset_y, _size, _index, _print) {
-		
-			global.mouseCursor = true;
+	static boundingBox = function(_startX, _offset_y, _size, _print, _doubleWidth = false, _minimalWidth = 0) {
 
 
-			var _width = string_width(_print);
+			var _width = max(_minimalWidth, string_width(_print));
 			var _height = string_height(_print);
+			
+			var _halign = draw_get_halign();
+			var _valign = draw_get_valign();
 
 
 			var _x1 = _startX;
@@ -185,19 +208,26 @@ function Menu(_options = []) constructor {
 			var _y1 = _offset_y;
 			var _y2 = _offset_y;
 
-			switch (draw_get_halign()) {
+			switch (_halign) {
 				case fa_left:
 					_x2 += _width;
+					if(_doubleWidth) {
+						_x1 -= _width;	
+					}
 					break;
 				case fa_center:
-					_x1 -= _width * 0.5;
-					_x2 += _width * 0.5;
+					_x1 -= (_width * 0.5) * (_doubleWidth ? 2 : 1);
+					_x2 += (_width * 0.5) * (_doubleWidth ? 2 : 1);
 					break;
 				case fa_right:
 					_x1 -= _width;
+					if(_doubleWidth) {
+						_x2 += _width;	
+					}
+					
 			}
 
-			switch (draw_get_valign()) {
+			switch (_valign) {
 				case fa_top:
 					_y2 += _height;
 					break;
@@ -217,8 +247,74 @@ function Menu(_options = []) constructor {
 			_x2 += _rectange_offset;
 			_y2 += _rectange_offset;
 
-			//draw_set_color(c_black);
-			//draw_rectangle(_x1, _y1, _x2, _y2, true);
+			return { x1: _x1, x2: _x2, y1: _y1, y2: _y2 }
+		
+	};
+	
+
+	static mouse = function(_params, _index) {
+		
+			global.mouseCursor = true;
+			
+			var _x1 = _params.x1;
+			var _x2 = _params.x2;
+			var _y1 = _params.y1;
+			var _y2 = _params.y2;
+
+
+			/*var _width = max(_minimalWidth, string_width(_print));
+			var _height = string_height(_print);
+			
+			var _halign = draw_get_halign();
+			var _valign = draw_get_valign();
+
+
+			var _x1 = _startX;
+			var _x2 = _startX;
+			var _y1 = _offset_y;
+			var _y2 = _offset_y;
+
+			switch (_halign) {
+				case fa_left:
+					_x2 += _width;
+					if(_doubleWidth) {
+						_x1 -= _width;	
+					}
+					break;
+				case fa_center:
+					_x1 -= (_width * 0.5) * (_doubleWidth ? 2 : 1);
+					_x2 += (_width * 0.5) * (_doubleWidth ? 2 : 1);
+					break;
+				case fa_right:
+					_x1 -= _width;
+					if(_doubleWidth) {
+						_x2 += _width;	
+					}
+					
+			}
+
+			switch (_valign) {
+				case fa_top:
+					_y2 += _height;
+					break;
+				case fa_middle:
+					_y1 -= _height * 0.5;
+					_y2 += _height * 0.5;
+					break;
+				case fa_bottom:
+					_y1 -= _height;
+					break;
+			}
+
+			// show_debug_message({_halign, _valign});
+			var _rectange_offset = _size / 10;
+			_x1 -= _rectange_offset;
+			_y1 -= _rectange_offset;
+			_x2 += _rectange_offset;
+			_y2 += _rectange_offset;*/
+
+			draw_set_color(c_black);
+			draw_rectangle(_x1, _y1, _x2, _y2, true);
 
 			//show_debug_message({mouse_x, mouse_y, _x1, _y1, _x2, _y2});
 
@@ -232,6 +328,30 @@ function Menu(_options = []) constructor {
 			}
 		
 	};
+		
+	static sprite = function(_params, _index, _sprite) {
+		
+//self.optionSelected = _index
+					var _x1 = _params.x1;
+			var _x2 = _params.x2;
+			var _y1 = _params.y1;
+			var _y2 = _params.y2;
+			
+			var _imageIndex = self.optionSelected = _index ? 1 : 0
+
+		
+			draw_sprite_stretched(
+				_sprite,
+				_imageIndex, 
+				_x1,
+				_y1,
+				_x2 - _x1,
+				_y2 - _y1
+			);
+	
+		
+	};
+		
 
 	static filter = function() {
 		var _newOptions = [];
@@ -363,6 +483,8 @@ function toggleOptionLanguage() {
 	} else {
 		global.gameOptions.language = "en";
 	}
+	
+	setLanguage(global.gameOptions.language);
 	writeConfig();
 }
 

@@ -4,10 +4,10 @@ resetTexts();
 
 var _startX = RES_W * 0.5;
 var _startY = RES_H * 0.5
-var _size = 48;
+var _size = 68;// 48;
 
 // draw_set_halign(fa_right);
-menu.render(_startX/* - 20*/, _startY, _size, false, true, false, c_black);
+menu.render(_startX/* - 20*/, _startY, _size, false, true, false, c_black, sGUIHomeButton, [8,5]);
 draw_set_halign(fa_left);
 
 for (var _i = 0; _i < array_length(displayOptions); _i++) {

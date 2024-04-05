@@ -1,6 +1,8 @@
 var _menuOptions = new MenuItemOptions();
 _menuOptions.offsetX = -20;
 _menuOptions.halign = fa_right;
+_menuOptions.doubleWidth = true;
+_menuOptions.minimalWidth = room_width * 0.3;
 
 var _menu = [
 	new MenuItem("optionMusic", toggleOptionMusic, _menuOptions),
