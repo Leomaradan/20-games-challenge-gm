@@ -7,6 +7,9 @@ if(!effectSet) {
 	effectSet = true;
 }
 
+background1 = layer_get_id("BackgroundNear");
+background2 = layer_get_id("BackgroundMiddle");
+background3 = layer_get_id("BackgroundFar");
 
 switch(room) {
 	case rFlappyBirdPlay:	

@@ -1,4 +1,4 @@
-var _text = vText != 0 ? vText : "(Soon)";
+var _text = vText != 0 ? vText : "menuSoon";
 var _icon = sIconUnknown;
 var _layoutIcon = true;
 var _activated = image_index % 2 != 0;

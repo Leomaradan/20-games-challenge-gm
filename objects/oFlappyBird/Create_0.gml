@@ -42,3 +42,11 @@ optionStartGame = new MenuItem(standardMenuTitle().start, function() {
 });
 
 levelLayout = [];
+
+background1 = layer_get_id("BackgroundNear");
+background2 = layer_get_id("BackgroundMiddle");
+background3 = layer_get_id("BackgroundFar");
+
+initialBackgroundSpeed1 = layer_get_hspeed(background1);
+initialBackgroundSpeed2 = layer_get_hspeed(background2);
+initialBackgroundSpeed3 = layer_get_hspeed(background3);

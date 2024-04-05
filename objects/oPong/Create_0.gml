@@ -36,7 +36,7 @@ menu = emptyMenu;
 //options = undefined;
 
 
-optionRestartGame = new MenuItem("New game", function() {
+optionRestartGame = new MenuItem(standardMenuTitle().newGame, function() {
 	score_player = 0;
 	score_enemy = 0;
 	score_pass = 0;	
@@ -44,6 +44,6 @@ optionRestartGame = new MenuItem("New game", function() {
 	room_goto(rmPongStart);
 });
 
-optionStartGame = new MenuItem("Start", function() {
+optionStartGame = new MenuItem(standardMenuTitle().start, function() {
 	room_goto(rmPongPlay);
 });

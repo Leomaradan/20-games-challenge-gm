@@ -1,9 +1,3 @@
-x -= oFlappyBird.gameSpeed;
-
-if(x <= -160) {
-	instance_destroy()	;
-}
-
 var _triggerCollision = instance_place(x, y, oWall);
 
 if(_triggerCollision && !hasTriggerLevel) {

@@ -5,7 +5,7 @@
 
 if(room == rFlappyBirdPlay) {
 
-	textsDraw(1152, 64, playerScore, 48, 0.8);
+	textsDrawShadow(1152, 64, playerScore, 48, 0.8);
 }
 
 if(room == rFlappyBirdGameOver) {
@@ -22,10 +22,10 @@ if(room == rFlappyBirdGameOver) {
 	ini_close();
 
 
-	textsDrawShadow(30, scoreVertical, "Your Score", 24, 1, c_yellow, fa_left);	
+	textsDrawShadow(30, scoreVertical, "gameoverYourScore", 24, 1, c_yellow, fa_left);	
 	textsDrawShadow(scoreHorizontal, scoreVertical, playerScore, 24, 1, c_yellow, fa_right);
 	
-	textsDrawShadow(30, scoreVertical + scoreVerticalOffset, "High Score", 24, 1, c_yellow, fa_left);	
+	textsDrawShadow(30, scoreVertical + scoreVerticalOffset, "gameoverHighScore", 24, 1, c_yellow, fa_left);	
 	textsDrawShadow(scoreHorizontal, scoreVertical + scoreVerticalOffset, _highscore, 24, 1, c_yellow, fa_right);
 	
 }

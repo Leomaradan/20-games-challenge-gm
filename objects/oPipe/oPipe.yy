@@ -2,16 +2,17 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "oPipe",
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-  ],
+  "eventList": [],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
     "name": "Gameplay",
     "path": "folders/Objects/FlappyBird/Gameplay.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "oGameElement",
+    "path": "objects/oGameElement/oGameElement.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

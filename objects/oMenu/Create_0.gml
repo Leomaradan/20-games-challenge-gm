@@ -3,6 +3,8 @@ buttonSelectedRow = 1;
 
 previousSelectedCol = 1;
 previousSelectedRow = 1;
+
+global.mouseCursor = true;
 /*optionSelected = 0;
 
 

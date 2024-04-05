@@ -33,12 +33,20 @@ function MenuItemOptions(
 	_platforms = [],
 	_sound = sndMenuClick,
 	_selectedOpacity = 1.0,
-	_unselectedOpacity = 0.7
+	_unselectedOpacity = 0.7,
+	_halign = undefined,
+	_valign = undefined,
+	_offsetX = undefined,
+	_offsetY = undefined,
 ) constructor {
 	platforms = _platforms;
 	sound = _sound;
 	selectedOpacity = _selectedOpacity;
 	unselectedOpacity = _unselectedOpacity;
+	halign = _halign;
+	valign = _valign;
+	offsetX = _offsetX;
+	offsetY = _offsetY;
 }
 
 /// @func Menu item
@@ -98,36 +106,54 @@ function Menu(_options = []) constructor {
 			var _print = "";
 			var _current = self.options[_i];
 			var _opacity = 1.0;
+			var _name = translate(_current.name);
 
 			if (_i == self.optionSelected) {
 				if(_cursors) {
-					_print += "> " + _current.name + " <";
+					_print += "> " + _name + " <";
 				} else {
-					_print += _current.name;
+					_print += _name;
 				}
 				_opacity = _current.option.selectedOpacity;
 			} else {
-				_print += _current.name;
+				_print += _name;
 				_opacity = _current.option.unselectedOpacity;
 			}
 			
+			var _offset_x = _startX;
 			var _offset_y = _startY + (_i * _size);
 			
+			if(_current.option.offsetX) {
+				_offset_x += _current.option.offsetX;	
+			}
+			
+			if(_current.option.offsetY) {
+				_offset_y += _current.option.offsetY;	
+			}	
+			
+			if(_current.option.halign) {
+				draw_set_halign(_current.option.halign);
+			}		
+			
+			if(_current.option.valign) {
+				draw_set_valign(_current.option.valign);
+			}				
+			
 			if(_enableMouse) {
-				self.mouse(_startX, _offset_y, _size, _i, _print);
+				self.mouse(_offset_x, _offset_y, _size, _i, _print);
 			}
 
 			if (_shadow) {
 				draw_set_alpha(_opacity - 0.3);
 
 				draw_set_color(c_black);
-				draw_text(_startX, _offset_y + 8, _print);
+				draw_text(_offset_x, _offset_y + 8, _print);
 			}
 
 			draw_set_alpha(_opacity);
 			draw_set_color(_color);
 
-			draw_text(_startX, _offset_y, _print);
+			draw_text(_offset_x, _offset_y, _print);
 			draw_set_alpha(1.0);
 		}
 
@@ -146,6 +172,8 @@ function Menu(_options = []) constructor {
 	};
 
 	static mouse = function(_startX, _offset_y, _size, _index, _print) {
+		
+			global.mouseCursor = true;
 
 
 			var _width = string_width(_print);
@@ -268,15 +296,15 @@ function standardMenuOptions() {
 	if (!variable_global_exists("_standardOptions")) {
 		global._standardOptions = {
 			returnToGameSelection: new MenuItem(
-				"Select game",
+				"menuSelectGame",
 				returnToMenuSelection
 			),
 			returnToDesktopMenuItem: new MenuItem(
-				"Exit",
+				"exit",
 				exitToDesktop,
 				new MenuItemOptions([Platforms.DESKTOP])
 			),
-			continueGame: new MenuItem("Continue", unpause),
+			continueGame: new MenuItem("menuContinue", unpause),
 		};
 	}
 
@@ -285,8 +313,8 @@ function standardMenuOptions() {
 
 function standardMenuTitle() {
 	return {
-		newGame: "New game",
-		start: "Start"
+		newGame: "menuNewGame",
+		start: "menuStart"
 	};
 }
 
@@ -294,7 +322,9 @@ function writeConfig() {
 	ini_open(SAVE);
 	ini_write_real("options", "music", global.gameOptions.music);
 	ini_write_real("options", "sound", global.gameOptions.sound);
-	ini_write_real("options", "fullscreen", global.gameOptions.fullscreen);
+	ini_write_real("options", "fullscreen", global.gameOptions.fullscreen);	
+	ini_write_string("options", "language", global.gameOptions.language);
+
 	ini_close();
 
 }
@@ -321,6 +351,17 @@ function toggleOptionSound() {
 	global.gameOptions.sound++;
 	if(global.gameOptions.sound > 2) {
 		global.gameOptions.sound = 0;	
+	}
+	writeConfig();
+}
+
+function toggleOptionLanguage() {
+	// Dirty, but good enough for the moment
+	
+	if(global.gameOptions.language == "en") {
+		global.gameOptions.language = "fr";	
+	} else {
+		global.gameOptions.language = "en";
 	}
 	writeConfig();
 }

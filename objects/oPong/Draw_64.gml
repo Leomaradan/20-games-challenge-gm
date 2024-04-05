@@ -42,19 +42,23 @@ if(room == rmPongGameover) {
 
 
 
-	if(score_enemy > score_player) {
+	/* if(score_enemy > score_player) {
 		oYouWonLose.sprite_index = sPongYouLose;	
 	} else {
 		oYouWonLose.sprite_index = sPongYouWon;
-	}
+	} */
+	
+	var _textWinLose = score_enemy > score_player ? "gameoverYouLose" : "gameoverYouWon";
+	
+	textsDraw(460,224,_textWinLose,72);
 
-	textsDrawShadow(30, scoreVertical, "Your Score", 24, 1, c_yellow, fa_left);	
+	textsDrawShadow(30, scoreVertical, "gameoverYourScore", 24, 1, c_yellow, fa_left);	
 	textsDrawShadow(scoreHorizontal, scoreVertical, score_player, 24, 1, c_yellow, fa_right);
 	
-	textsDrawShadow(30, scoreVertical + scoreVerticalOffset, "Enemy Score", 24, 1, c_yellow, fa_left);	
+	textsDrawShadow(30, scoreVertical + scoreVerticalOffset, "gameoverEnemyScore", 24, 1, c_yellow, fa_left);	
 	textsDrawShadow(scoreHorizontal, scoreVertical + scoreVerticalOffset, score_enemy, 24, 1, c_yellow, fa_right);
 	
-	textsDrawShadow(30, scoreVertical + (scoreVerticalOffset * 2), "Pass", 24, 1, c_yellow, fa_left);	
+	textsDrawShadow(30, scoreVertical + (scoreVerticalOffset * 2), "gameoverPass", 24, 1, c_yellow, fa_left);	
 	textsDrawShadow(scoreHorizontal, scoreVertical + (scoreVerticalOffset * 2), score_pass, 24, 1, c_yellow, fa_right);
 	
 	//textsDraw(_horizontal_center, room_height - 48, "Press " + _restartString + " to reset", 48, _opacity);

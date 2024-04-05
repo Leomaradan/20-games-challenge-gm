@@ -13,7 +13,10 @@
     "name": "Gameplay",
     "path": "folders/Objects/FlappyBird/Gameplay.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "oGameElement",
+    "path": "objects/oGameElement/oGameElement.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

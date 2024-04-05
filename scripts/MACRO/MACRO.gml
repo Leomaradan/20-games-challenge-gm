@@ -1,6 +1,9 @@
 #macro DEBUG false
 #macro STEAM false
 
+#macro Debug:DEBUG true
+#macro DesktopSteam:STEAM true
+
 #macro TILESET_SIZE 32
 #macro OBJECT_SIZE 16
 #macro FLAPPY_TILES 64

@@ -1,6 +1,6 @@
-//x = mouse_x;
-//y = mouse_y;
-
+if(global.pause) {
+	return;	
+}
 
 //oPostProcess.ppfx.SetEffectParameter(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION, [GUI_MOUSE_X_NORMALIZED, GUI_MOUSE_Y_NORMALIZED]);
 //oPostProcess.ppfx.SetEffectParameter(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION, [0.05, 0.5]);

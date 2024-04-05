@@ -14,6 +14,7 @@
   "classname": "",
   "ConfigValues": {},
   "copyToTargets": 66,
+  "date": "2024-04-05T08:17:51.267092+02:00",
   "description": "",
   "exportToGame": true,
   "extensionVersion": "1.6.3",

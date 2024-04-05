@@ -7,9 +7,8 @@
   "inheritCreationOrder": false,
   "inheritLayers": false,
   "instanceCreationOrder": [
-    {"name":"inst_6F748BCA","path":"rooms/rmPongGameover/rmPongGameover.yy",},
-    {"name":"inst_5B2D5060","path":"rooms/rmPongGameover/rmPongGameover.yy",},
     {"name":"inst_5E1BDC49","path":"rooms/rmPongGameover/rmPongGameover.yy",},
+    {"name":"inst_64110E36","path":"rooms/rmPongGameover/rmPongGameover.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -26,9 +25,8 @@
         {"name":"g_GlowAlpha","type":0,"value":"1",},
       ],"spriteId":{"name":"sPongUI","path":"sprites/sPongUI/sPongUI.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":false,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":200,"effectEnabled":true,"effectType":"_effect_glow","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6F748BCA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oGameOver","path":"objects/oGameOver/oGameOver.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":235.0,"y":96.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_5B2D5060","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oYouWonLose","path":"objects/oYouWonLose/oYouWonLose.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":460.0,"y":224.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_5E1BDC49","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oBallStanding","path":"objects/oBallStanding/oBallStanding.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":640.0,"y":384.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_64110E36","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"oTextGameOver","path":"objects/oTextGameOver/oTextGameOver.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":632.0,"y":160.0,},
       ],"layers":[],"properties":[
         {"name":"g_GlowRadius","type":0,"value":"256",},
         {"name":"g_GlowQuality","type":0,"value":"5",},
