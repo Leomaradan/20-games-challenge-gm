@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "language",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "GUI",
-    "path": "folders/Scripts/GUI.yy",
+  "$GMScript":"",
+  "%Name":"language",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"language",
+  "parent":{
+    "name":"GUI",
+    "path":"folders/Scripts/GUI.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

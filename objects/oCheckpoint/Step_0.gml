@@ -5,10 +5,10 @@ if(_triggerCollision && !hasTriggerLevel) {
 	hasTriggerLevel = true;
 	global.cpt++;
 	
-	var _design = array_pop(oFlappyBird.levelLayout);
+	var _design = array_pop(oWingSoar.levelLayout);
 	
-	if(array_length(oFlappyBird.levelLayout) == 0) {
-		oFlappyBird.levelLayout = generateLevel();
+	if(array_length(oWingSoar.levelLayout) == 0) {
+		oWingSoar.levelLayout = generateLevel();
 	}
 
 

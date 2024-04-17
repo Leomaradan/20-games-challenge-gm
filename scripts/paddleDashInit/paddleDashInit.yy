@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"paddleDashInit",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"paddleDashInit",
+  "parent":{
+    "name":"PaddleDash",
+    "path":"folders/Scripts/PaddleDash.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

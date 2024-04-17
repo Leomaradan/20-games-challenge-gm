@@ -16,7 +16,6 @@
 /// .button(clickVerb)
 /// .dpad(clickVerb, leftVerb, rightVerb, upVerb, downVerb, [4dir])
 /// .thumbstick(clickVerb, leftVerb, rightVerb, upVerb, downVerb)
-/// .touchpad(clickVerb, leftVerb, rightVerb, upVerb, downVerb, sensitivity)
 /// .get_type()
 /// .get_verbs()
 /// .threshold(min, max)

@@ -24,7 +24,7 @@ if(vSpeed != 0) {
 
 var _resultingSpeed = vSpeed + gravityForce;
 
-var _angle = point_direction(0, 0, oFlappyBird.gameSpeed, _resultingSpeed);
+var _angle = point_direction(0, 0, oWingSoar.gameSpeed, _resultingSpeed);
 /*if(_resultingSpeed < 0) {
 	// up
 	image_angle	= 45
@@ -53,18 +53,18 @@ var _pipeCollision = instance_place(x, y, oPipe);
 var _checkpointCollision = instance_place(x, y, oCheckpoint);
 
 if(instance_exists(_oobCollision)) {
-	room_goto(rFlappyBirdGameOver);	
+	room_goto(rWingSoarGameOver);	
 }
 
 if(instance_exists(_pipeCollision)) {
-	room_goto(rFlappyBirdGameOver);	
+	room_goto(rWingSoarGameOver);	
 }
 
 if(instance_exists(_checkpointCollision) && !_checkpointCollision.hasTriggerPlayer) {
 	
 	_checkpointCollision.hasTriggerPlayer = true;
-	oFlappyBird.playerScore += _checkpointCollision.point;
-	oFlappyBird.gameSpeed += 0.1;
+	oWingSoar.playerScore += _checkpointCollision.point;
+	oWingSoar.gameSpeed += 0.1;
 	if(_checkpointCollision.point == 1) {
 		playSound(sndBonusGet, 0.2);
 	} else {

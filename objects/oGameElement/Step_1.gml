@@ -2,7 +2,7 @@ if(global.pause) {
 	return;	
 }
 
-x -= oFlappyBird.gameSpeed;
+x -= oWingSoar.gameSpeed;
 
 if(x <= -160) {
 	instance_destroy()	;

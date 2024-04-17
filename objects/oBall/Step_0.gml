@@ -2,83 +2,80 @@ if(global.pause) {
 	return;	
 }
 
-if(h_speed == 0 && v_speed == 0) {
+if(hSpeed == 0 && vSpeed == 0) {
 	if(timeout > 0) {
 		timeout--;
 	} else {
-		h_speed = initial_velocity;	
+		hSpeed = initialVelocity;	
 		playSound(sndPongBallLaunch);
 	}
 }
 
-x += h_speed;
-y += v_speed;
+x += hSpeed;
+y += vSpeed;
 
 
-var _paddle_collision = instance_place(x, y, oPaddle);
-var _wall_collision = instance_place(x, y, oWall);
-var _oob_collision = instance_place(x, y, oOOB);
+var _paddleCollision = instance_place(x, y, oPaddle);
+var _wallCollision = instance_place(x, y, oWall);
+var _oobCollision = instance_place(x, y, oOOB);
 
 show_debug_message("velocity {0}", velocity);
 
-if(_paddle_collision) {
+if(instance_exists(_paddleCollision)) {
 	
-	var _start_y = _paddle_collision.y - _paddle_collision.half_paddle_size;
-	var _end_y = _paddle_collision.y + _paddle_collision.half_paddle_size;
+	var _startY = _paddleCollision.y - _paddleCollision.halfPaddleSize;
+	var _endY = _paddleCollision.y + _paddleCollision.halfPaddleSize;
 	
-	var _progression = ((y - _start_y) / (_end_y - _start_y)) - 0.5;
+	var _progression = ((y - _startY) / (_endY - _startY)) - 0.5;
 	
-	vertical_angle = clamp( _progression - vertical_angle, -1, 1);
+	verticalAngle = clamp( _progression - verticalAngle, -1, 1);
 
 
-	h_speed = _paddle_collision.is_player ? velocity : 0 - velocity;
-	v_speed = velocity * vertical_angle;
+	hSpeed = _paddleCollision.isPlayer ? velocity : 0 - velocity;
+	vSpeed = velocity * verticalAngle;
 
-	last_hit_player = _paddle_collision.is_player;
+	lastHitPlayer = _paddleCollision.isPlayer;
 	velocity += 0.1;
-	oPong.score_pass++;
+	oPaddleDash.scorePass++;
 	playSound(sndPongBallBounce, 0.5, 0.2);
 	
-	if(last_hit_player) {
+	if(lastHitPlayer) {
 		shockwave_instance_create(oPlayerPaddle.x, oPlayerPaddle.y, "Instances", 0, 2, 1, __obj_ppf_shockwave);	
 	} else {
 		shockwave_instance_create(oEnemyPaddle.x + 70, oEnemyPaddle.y, "Instances", 0, 2, 1, __obj_ppf_shockwave);	
-	}
-	
-	
-	
+	}	
 }
 
-if(_wall_collision) {
-	v_speed = 0 - v_speed;
+if(instance_exists(_wallCollision)) {
+	vSpeed = 0 - vSpeed;
 	playSound(sndPongBallBounce, 0.5, 0.2);
 	shockwave_instance_create(x, y, "Instances", 0, 2, 1, __obj_ppf_shockwave);	
 }
 
-if(_oob_collision) {
-	x = initial_x;
-	y = initial_y;
-	pong_init();
+if(instance_exists(_oobCollision)) {
+	x = initialX;
+	y = initialY;
+	paddleDashInit();
  
-	if(last_hit_player) {
-		oPong.score_player++;
-		initial_velocity = velocity;	
+	if(lastHitPlayer) {
+		oPaddleDash.scorePlayer++;
+		initialVelocity = velocity;	
 	} else {
-		oPong.score_enemy++;
-		initial_velocity = 0 - velocity;
+		oPaddleDash.scoreEnemy++;
+		initialVelocity = 0 - velocity;
 	}
 	
-	last_hit_player = false;	
+	lastHitPlayer = false;	
 	
-	if(oPong.score_enemy >= WIN || oPong.score_player >= WIN) {
+	if(oPaddleDash.scoreEnemy >= WIN || oPaddleDash.scorePlayer >= WIN) {
 		
-		if(oPong.score_player > oPong.score_enemy) {
+		if(oPaddleDash.scorePlayer > oPaddleDash.scoreEnemy) {
 			playSound(sndPongVictory);
 		} else {
 			playSound(sndPongDefeat);
 		}
 		
-		room_goto(rmPongGameover);	
+		room_goto(rPaddleDashGameover);	
 	} else {
 		playSound(sndMenuClick);
 	}

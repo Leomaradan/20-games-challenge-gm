@@ -17,7 +17,7 @@ var _systemLanguagenOption = ini_read_string("options", "language", getLanguageI
 
 ini_close();
 
-global.language = {};
+global.language = undefined;
 
 // selectedLang = _systemLanguagenOption;
 

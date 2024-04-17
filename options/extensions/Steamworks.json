@@ -1,16 +1,19 @@
 {
-  "resourceType": "GMExtensionConfigSet",
+  "$GMExtensionConfigSet": "GMExtensionConfigSet",
   "configurables": {
     "fc7d5b5e-1344-49ee-bca6-8579b0c68d50": null,
     "2d6a1c61-98e7-4289-8eff-d70ef6dac1ff": {
       "Default": {
         "value": "D:\\\\GameDev\\\\Steam\\\\steamworks_sdk_155\\\\sdk"
+      },
+      "DesktopSteam": {
+        "value": "/home/leomaradan/code/steamworks/sdk_1.55"
       }
     },
     "c37a2e1d-c82f-4d90-9d0a-b4a2b3b3da08": null,
     "2d512363-a8c0-4025-8b9f-b53e231b025d": {
       "Default": {
-        "value": "378090"
+        "value": "2948400"
       }
     },
     "96a61e5d-c4ac-4104-b5ac-c8ef936e2609": null,
@@ -24,6 +27,5 @@
     "f070764a-195d-45ff-b522-1e3f22cba09c": null,
     "a675bafd-d65f-4f79-97c5-3f65e3e15551": null,
     "fab932ce-9c6b-4633-a029-090fc01624d7": null
-  },
-  "resourceVersion": "1.0"
+  }
 }

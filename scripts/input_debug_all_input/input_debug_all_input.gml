@@ -142,7 +142,8 @@ function input_debug_all_input(_ignore_array = undefined, _allow_array = undefin
             {
                 if (_global.__mouse_allowed && !_global.__window_focus_block_mouse)
                 {
-                    if (_filter_func(mb_left, _ignore_struct, _allow_struct)
+                    if ((!INPUT_WINDOWS_TOUCH || __INPUT_ON_WINDOWS)
+                    && _filter_func(mb_left, _ignore_struct, _allow_struct)
                     && mouse_check_button(mb_left))
                     {
                         array_push(_result, input_binding_mouse_button(mb_left));
@@ -191,9 +192,13 @@ function input_debug_all_input(_ignore_array = undefined, _allow_array = undefin
                                     gp_padu,      gp_padd,      gp_padl,       gp_padr, 
                                     gp_shoulderl, gp_shoulderr, gp_shoulderlb, gp_shoulderrb,
                                     gp_start,     gp_select,    gp_stickl,     gp_stickr,
-                                    gp_axislh,    gp_axislv,    gp_axisrh,     gp_axisrv,
-                                    gp_paddle1,   gp_paddle2,   gp_paddle3,   gp_paddle4,
-                                    gp_guide,     gp_touchpad,  gp_misc1]; 
+                                    gp_axislh,    gp_axislv,    gp_axisrh,     gp_axisrv,    ];
+                
+                //Extended buttons
+                if (INPUT_SDL2_ALLOW_EXTENDED)
+                {
+                    array_push(_check_array, gp_guide, gp_misc1, gp_touchpad, gp_paddle1, gp_paddle2, gp_paddle3, gp_paddle4);
+                }
                 
                 var _j = 0;
                 repeat(array_length(_check_array))

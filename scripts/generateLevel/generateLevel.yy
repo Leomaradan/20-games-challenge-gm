@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "generateLevel",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "FlappyBird",
-    "path": "folders/Scripts/FlappyBird.yy",
+  "$GMScript":"",
+  "%Name":"generateLevel",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"generateLevel",
+  "parent":{
+    "name":"WingSoar",
+    "path":"folders/Scripts/WingSoar.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

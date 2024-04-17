@@ -1,13 +1,13 @@
-h_speed = 0;
-v_speed = 0;
+hSpeed = 0;
+vSpeed = 0;
 timeout = 0;
 velocity = 0;
-vertical_angle = 0;
-last_hit_player = false;
+verticalAngle = 0;
+lastHitPlayer = false;
 
-pong_init();
+paddleDashInit();
 
-initial_velocity = -15 // -5;
+initialVelocity = -15 // -5;
 
-initial_x = x;
-initial_y = y;
+initialX = x;
+initialY = y;

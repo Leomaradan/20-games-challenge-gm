@@ -62,6 +62,24 @@ function MenuItem(
 	option = _option;
 }
 
+/// @func Bounding Box
+/// @param {Real} _x1 X1
+/// @param {Real} _x2 X2
+/// @param {Real} _y1 Y1
+/// @param {Real} _y2 Y2
+function BoundingBox(
+	_x1,
+	_x2,
+	_y1,
+	_y2,
+) constructor {
+	x1 = _x1
+	x2 = _x2
+	y1 = _x1
+	y2 = _x2
+}
+
+
 /// @func Menu instance
 /// @param {Array<Struct.MenuItem>} _options List of options
 function Menu(_options = []) constructor {
@@ -70,6 +88,9 @@ function Menu(_options = []) constructor {
 	filtered = false;
 	overrideSize = undefined;
 
+	/// @func Step management
+	/// @param {Real} _upPressed Indicate that Up has been pressed
+	/// @param {Real} _downPressed Indicate that Down has been pressed
 	static step = function(_upPressed, _downPressed) {
 		if (!self.filtered) {
 			self.filter();
@@ -96,13 +117,23 @@ function Menu(_options = []) constructor {
 		}
 	};
 
+	/// @func Step management
+	/// @param {Real} _startX X position
+	/// @param {Real} _startY Y position
+	/// @param {Real} _size Y position
+	/// @param {Bool} _shadow Y position
+	/// @param {Bool} _enableMouse Y position
+	/// @param {Bool} _cursors Y position
+	/// @param {Constant.Color} _color Y position
+	/// @param {Asset.GMSprite} _sprite Y position
+	/// @param {Array<Real>} _yOffsets Y position
 	static render = function(_startX, _startY, _size, _shadow = false, _enableMouse = true, _cursors = true, _color = c_white, _sprite = undefined, _yOffsets = undefined) {
 		if (!self.filtered) {
 			self.filter();
 		}
 		
-		var _initial_valign = draw_get_valign();
-		var _initial_halign = draw_get_halign();
+		var _initialValign = draw_get_valign();
+		var _initialHalign = draw_get_halign();
 
 		for (var _i = 0; _i < array_length(self.options); _i++) {
 			var _print = "";
@@ -122,60 +153,60 @@ function Menu(_options = []) constructor {
 				_opacity = _current.option.unselectedOpacity;
 			}
 			
-			var _offset_x = _startX;
-			var _offset_y = _startY + (_i * _size);
+			var _offsetX = _startX;
+			var _offsetY = _startY + (_i * _size);
 			
 			if(_current.option.offsetX) {
-				_offset_x += _current.option.offsetX;	
+				_offsetX += _current.option.offsetX;	
 			}
 			
 			if(_current.option.offsetY) {
-				_offset_y += _current.option.offsetY;	
+				_offsetY += _current.option.offsetY;	
 			}	
 			
 			if(_current.option.halign) {
 				draw_set_halign(_current.option.halign);
 			} else {
-				draw_set_halign(_initial_halign);
+				draw_set_halign(_initialHalign);
 			}
 			
 			if(_current.option.valign) {
 				draw_set_valign(_current.option.valign);
 			} else {
-				draw_set_valign(_initial_valign);
+				draw_set_valign(_initialValign);
 			}				
 			
-			var _params = {};
+			var _boundingBox = undefined;
 			
 			if(_enableMouse || _sprite) {
-				_params = self.boundingBox(_offset_x, _offset_y, _size, _print, _current.option.doubleWidth, _current.option.minimalWidth);
+				_boundingBox = self.boundingBox(_offsetX, _offsetY, _size, _print, _current.option.doubleWidth, _current.option.minimalWidth);
 			}
 			
 			if(_enableMouse) {
-				self.mouse(_params, _i);
+				self.mouse(_boundingBox, _i);
 			}
 			
 			if(_sprite) {
-				self.sprite(_params, _i, _sprite);
+				self.sprite(_boundingBox, _i, _sprite);
 			}
 
 			if (_shadow) {
 				draw_set_alpha(_opacity - 0.3);
 
 				draw_set_color(c_black);
-				draw_text(_offset_x, _offset_y + 8, _print);
+				draw_text(_offsetX, _offsetY + 8, _print);
 			}
 
 			draw_set_alpha(_opacity);
 			draw_set_color(_color);
 			
-			var _offset_text_y = _offset_y;
+			var _offsetTextY = _offsetY;
 			
-			if(_yOffsets) {
+			if(_yOffsets != undefined && array_length(_yOffsets) == 2) {
 				//_offset_text_y += (_i == self.optionSelected) ? _yOffsets[0] : _yOffsets[1];
 			}
 
-			draw_text(_offset_x, _offset_y, _print);
+			draw_text(_offsetX, _offsetY, _print);
 			draw_set_alpha(1.0);
 		}
 
@@ -193,7 +224,15 @@ function Menu(_options = []) constructor {
 		}
 	};
 
-	static boundingBox = function(_startX, _offset_y, _size, _print, _doubleWidth = false, _minimalWidth = 0) {
+	/// @func Get bounding box
+	/// @param {Real} _startX X position
+	/// @param {Real} _startY Y position
+	/// @param {Real} _size Y position
+	/// @param {String} _print Y position
+	/// @param {Bool} _doubleWidth Y position
+	/// @param {Real} _minimalWidth Y position
+	/// @return {Struct.BoundingBox}
+	static boundingBox = function(_startX, _offsetY, _size, _print, _doubleWidth = false, _minimalWidth = 0) {
 
 
 			var _width = max(_minimalWidth, string_width(_print));
@@ -205,8 +244,8 @@ function Menu(_options = []) constructor {
 
 			var _x1 = _startX;
 			var _x2 = _startX;
-			var _y1 = _offset_y;
-			var _y2 = _offset_y;
+			var _y1 = _offsetY;
+			var _y2 = _offsetY;
 
 			switch (_halign) {
 				case fa_left:
@@ -241,84 +280,30 @@ function Menu(_options = []) constructor {
 			}
 
 			// show_debug_message({_halign, _valign});
-			var _rectange_offset = _size / 10;
-			_x1 -= _rectange_offset;
-			_y1 -= _rectange_offset;
-			_x2 += _rectange_offset;
-			_y2 += _rectange_offset;
+			var _rectangeOffset = _size / 10;
+			_x1 -= _rectangeOffset;
+			_y1 -= _rectangeOffset;
+			_x2 += _rectangeOffset;
+			_y2 += _rectangeOffset;
 
-			return { x1: _x1, x2: _x2, y1: _y1, y2: _y2 }
+			return new BoundingBox(_x1, _x2, _y1, _y2);
 		
 	};
 	
 
-	static mouse = function(_params, _index) {
+	/// @func Calculate mouse interaction
+	/// @param {Struct.BoundingBox} _boundingBox Bounding Box
+	/// @param {Real} _index Index
+	static mouse = function(_boundingBox, _index) {
 		
 			global.mouseCursor = true;
 			
-			var _x1 = _params.x1;
-			var _x2 = _params.x2;
-			var _y1 = _params.y1;
-			var _y2 = _params.y2;
-
-
-			/*var _width = max(_minimalWidth, string_width(_print));
-			var _height = string_height(_print);
-			
-			var _halign = draw_get_halign();
-			var _valign = draw_get_valign();
-
-
-			var _x1 = _startX;
-			var _x2 = _startX;
-			var _y1 = _offset_y;
-			var _y2 = _offset_y;
-
-			switch (_halign) {
-				case fa_left:
-					_x2 += _width;
-					if(_doubleWidth) {
-						_x1 -= _width;	
-					}
-					break;
-				case fa_center:
-					_x1 -= (_width * 0.5) * (_doubleWidth ? 2 : 1);
-					_x2 += (_width * 0.5) * (_doubleWidth ? 2 : 1);
-					break;
-				case fa_right:
-					_x1 -= _width;
-					if(_doubleWidth) {
-						_x2 += _width;	
-					}
-					
+			if(DEBUG) {
+				draw_set_color(c_black);
+				draw_rectangle(_boundingBox.x1, _boundingBox.y1, _boundingBox.x2, _boundingBox.y2, true);
 			}
 
-			switch (_valign) {
-				case fa_top:
-					_y2 += _height;
-					break;
-				case fa_middle:
-					_y1 -= _height * 0.5;
-					_y2 += _height * 0.5;
-					break;
-				case fa_bottom:
-					_y1 -= _height;
-					break;
-			}
-
-			// show_debug_message({_halign, _valign});
-			var _rectange_offset = _size / 10;
-			_x1 -= _rectange_offset;
-			_y1 -= _rectange_offset;
-			_x2 += _rectange_offset;
-			_y2 += _rectange_offset;*/
-
-			draw_set_color(c_black);
-			draw_rectangle(_x1, _y1, _x2, _y2, true);
-
-			//show_debug_message({mouse_x, mouse_y, _x1, _y1, _x2, _y2});
-
-			if (point_in_rectangle(mouse_x, mouse_y, _x1, _y1, _x2, _y2)) {
+			if (point_in_rectangle(mouse_x, mouse_y, _boundingBox.x1, _boundingBox.y1, _boundingBox.x2, _boundingBox.y2)) {
 				self.optionSelected = _index;
 				
 				if(mouse_check_button_pressed(mb_left)) {
@@ -328,14 +313,17 @@ function Menu(_options = []) constructor {
 			}
 		
 	};
+	
+	/// @func Display menu sprite
+	/// @param {Struct.BoundingBox} _boundingBox Bounding Box
+	/// @param {Real} _index Index	
+	/// @param {Asset.GMSprite} _sprite Index	
+	static sprite = function(_boundingBox, _index, _sprite) {
 		
-	static sprite = function(_params, _index, _sprite) {
-		
-//self.optionSelected = _index
-					var _x1 = _params.x1;
-			var _x2 = _params.x2;
-			var _y1 = _params.y1;
-			var _y2 = _params.y2;
+			var _x1 = _boundingBox.x1;
+			var _x2 = _boundingBox.x2;
+			var _y1 = _boundingBox.y1;
+			var _y2 = _boundingBox.y2;
 			
 			var _imageIndex = self.optionSelected = _index ? 1 : 0
 

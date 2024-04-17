@@ -2,9 +2,9 @@ if(global.pause) {
 	return;	
 }
 
-y += v_speed;
+y += vSpeed;
 
-y = clamp(y, PADDING + half_paddle_size, 800-PADDING - half_paddle_size);
+y = clamp(y, PADDING + halfPaddleSize, 800-PADDING - halfPaddleSize);
 
 //var ppfx_id = is_player ? obj_pong.ppfx_id_player : obj_pong.ppfx_id_enemy;
 /*ppfx_id.SetEffectParameter(FX_EFFECT.MOTION_BLUR, 

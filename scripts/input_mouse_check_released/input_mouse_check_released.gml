@@ -21,21 +21,15 @@ function input_mouse_check_released(_binding)
     }
     
     var _left = false;
-    if (_global.__pointer_index_previous == 0)
+    if (__INPUT_ON_WINDOWS && (_global.__pointer_index_previous == 0))
     {
         //Mouse and touchpad
-        _left = device_mouse_check_button_released(0, mb_left);
+        _left = device_mouse_check_button_released(0, mb_left) || _global.__tap_click;
     }
     else
     {
         //Touch
         _left = _global.__pointer_released;
-    }    
-    
-    if (_global.__tap_click)
-    {
-        //Trackpad
-        _left = true;
     }
     
     switch(_binding)
