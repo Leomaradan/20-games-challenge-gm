@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "motionBlur",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "PostProcessing",
-    "path": "folders/Scripts/PostProcessing.yy",
+  "$GMScript":"",
+  "%Name":"motionBlur",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"motionBlur",
+  "parent":{
+    "name":"PostProcessing",
+    "path":"folders/Scripts/PostProcessing.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

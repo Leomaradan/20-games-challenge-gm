@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "debug",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "GUI",
-    "path": "folders/Scripts/GUI.yy",
+  "$GMScript":"",
+  "%Name":"debug",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"debug",
+  "parent":{
+    "name":"GUI",
+    "path":"folders/Scripts/GUI.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
